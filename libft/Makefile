@@ -15,7 +15,7 @@ NAME = libft.a
 CC = gcc -march=native
 LC = ar rcs
 
-CFLAGS = -Wall -Wextra -Werror -std=c99
+CFLAGS = -Wall -Wextra -Werror -Wno-unused-but-set-variable -std=c99
 
 DEL = rm -rf
 

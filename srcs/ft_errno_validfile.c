@@ -12,31 +12,31 @@
 
 #include "../includes/fillit.h"
 
-bool			ft_read_figure(string file_name)
+bool	ft_read_figure(string file_name)
 {
 	string	temp;
-	string	*figure;
 	int		fd;
 	size_t	nlines;
-	size_t	delimiter;
 
 	nlines = 0;
+	g_figure = (t_figure*)ft_memalloc(sizeof(t_figure));
 	fd = open(file_name, O_RDONLY);
 	while (ft_gnl(fd, &temp))
 		nlines++;
 	close(fd);
 	_ERR_NOTIS(nlines);
-	figure = (string*)ft_memalloc(nlines);
-	_ERR_NOTIS(figure);
+	g_figure->lines = nlines;
+	g_figure->tab = (string*)ft_memalloc(g_figure->lines);
+	_ERR_NOTIS(g_figure->tab);
 	fd = open(file_name, O_RDONLY);
 	nlines = -1;
-	while (ft_gnl(fd, &temp))
-		figure[++nlines] = temp;
+	while (ft_gnl(fd, &temp) > 0 && ++nlines < g_figure->lines)
+		g_figure->tab[nlines] = temp;
 	close(fd);
 	return (true);
 }
 
-bool			ft_errno_args(int *argc, string *argv)
+bool	ft_errno_args(int *argc, string *argv)
 {
 	(*argc)--;
 	argv++;

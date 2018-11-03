@@ -22,16 +22,24 @@ enum	e_bool
 	true
 };
 
-# define BUFF_SIZE	48
-
-# define _STR		typedef char*			string
 # define _BOOL		typedef enum e_bool		bool
+# define _STR		typedef char*			string
+
+_BOOL;
+_STR;
+
+typedef struct	s_figure
+{
+	string	*tab;
+	size_t	lines;
+}				t_figure;
+
+t_figure	*g_figure;
+
+# define BUFF_SIZE	48
 
 # define _ERR_MSG	ft_putendl("error!")
 # define _ERR_NOTIS(exception) if (!exception) return (false)
-
-_STR;
-_BOOL;
 
 int		ft_gnl(const int fd, string *line);
 
