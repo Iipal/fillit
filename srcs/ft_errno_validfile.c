@@ -12,36 +12,34 @@
 
 #include "../includes/fillit.h"
 
-bool	ft_read_figure(string file_name)
+bool	ft_read_figure(string file_name, t_figure **figure)
 {
-	string	temp;
-	int		fd;
-	size_t	nlines;
+	string		temp;
+	int			fd;
+	size_t		nlines;
 
 	nlines = 0;
-	g_figure = (t_figure*)ft_memalloc(sizeof(t_figure));
+	_ERR_NOTIS(*figure);
 	fd = open(file_name, O_RDONLY);
-	while (ft_gnl(fd, &temp))
+	while (ft_gnl(fd, &temp) > 0)
+	{
 		nlines++;
+		ft_strdel(&temp);
+	}
 	close(fd);
 	_ERR_NOTIS(nlines);
-	g_figure->lines = nlines;
-	g_figure->tab = (string*)ft_memalloc(g_figure->lines);
-	_ERR_NOTIS(g_figure->tab);
+	(*figure)->lines = nlines;
+	(*figure)->tab = (string*)malloc(sizeof(string) * (*figure)->lines);
+	_ERR_NOTIS((*figure)->tab);
 	fd = open(file_name, O_RDONLY);
 	nlines = -1;
-	while (ft_gnl(fd, &temp) > 0 && ++nlines < g_figure->lines)
-		g_figure->tab[nlines] = temp;
+	while (ft_gnl(fd, &temp) > 0 && ++nlines < (*figure)->lines)
+	{
+		_ERR_NOTIS(ft_strlen(temp) ==
+					((nlines + 1) % 5 ? 4 : 0));
+		(*figure)->tab[nlines] = ft_strdup(temp);
+		ft_strdel(&temp);
+	}
 	close(fd);
-	return (true);
-}
-
-bool	ft_errno_args(int *argc, string *argv)
-{
-	(*argc)--;
-	argv++;
-	if (!*argc || *argc > 1)
-		return (false);
-	_ERR_NOTIS(ft_read_figure(argv[0]));
 	return (true);
 }
