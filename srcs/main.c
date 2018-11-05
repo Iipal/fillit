@@ -22,6 +22,7 @@ bool		free_figure(t_figure **figure)
 		free((*figure)->tab[i]);
 	free(*figure);
 	*figure = NULL;
+	return (true);
 }
 
 bool		ft_errno_args(int *argc)
@@ -45,4 +46,5 @@ int		main(int argc, string *argv)
 	else
 		_ERR_MSG;
 	free_figure(&figure);
+	free(figure);
 }
