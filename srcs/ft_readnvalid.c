@@ -21,21 +21,18 @@ bool	ft_read_figure(string file_name, t_figure **figure)
 	nlines = 0;
 	fd = open(file_name, O_RDONLY);
 	while (ft_gnl(fd, &temp) > 0)
-	{
 		nlines++;
-		ft_strdel(&temp);
-	}
 	close(fd);
 	_ERR_NOTIS(nlines);
-	(*figure)->lines = nlines;
+	_ERR_NOTIS(!(nlines > 130 || nlines < 4));
+	(*figure)->lines = nlines - 1;
 	(*figure)->tab = (string*)malloc(sizeof(string) * (*figure)->lines);
 	_ERR_NOTIS((*figure)->tab);
 	fd = open(file_name, O_RDONLY);
 	nlines = -1;
-	while (ft_gnl(fd, &temp) > 0 && ++nlines < (*figure)->lines)
+	while (ft_gnl(fd, &temp) > 0)
 	{
-		_ERR_NOTIS(ft_strlen(temp) ==
-					((nlines + 1) % 5 ? 4 : 0));
+		_ERR_NOTIS(ft_strlen(temp) == ((++nlines + 1) % 5 ? 4 : 0));
 		(*figure)->tab[nlines] = ft_strdup(temp);
 		ft_strdel(&temp);
 	}

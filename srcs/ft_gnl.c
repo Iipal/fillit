@@ -67,4 +67,3 @@ int		ft_gnl(const int fd, string *line)
 		return (0);
 	return (ft_catline_recursive(fd, data, line, nbytes));
 }
-

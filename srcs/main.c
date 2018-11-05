@@ -33,7 +33,7 @@ bool		ft_errno_args(int *argc)
 	return (true);
 }
 
-int		main(int argc, string *argv)
+int			main(int argc, string *argv)
 {
 	t_figure	*figure;
 

@@ -37,13 +37,13 @@ typedef struct	s_figure
 # define BUFF_SIZE	42
 
 # define _ERR_MSG	ft_putendl("error!")
-# define _ERR_NOTIS(exception)			if (!(exception)) return (false)
-# define _ERR_NOTIS_MSG(exception)		if (!(exception)) { _ERR_MSG; return (false); }
-# define _ERR_NOTIS_O(exception, out)	if (!(exception)) return (out)
+# define _ERR_NOTIS(ex)	if (!(ex)) return (false)
+# define _ERR_NOTIS_MSG(ex)	if (!(ex)) { _ERR_MSG; return (false); }
+# define _ERR_NOTIS_O(ex, out)	if (!(ex)) return (out)
 
-int			ft_gnl(const int fd, string *line);
+int				ft_gnl(const int fd, string *line);
 
-bool		ft_errno_args(int *argc);
-bool	ft_read_figure(string file_name, t_figure **figure);
+bool			ft_errno_args(int *argc);
+bool			ft_read_figure(string file_name, t_figure **figure);
 
 #endif
