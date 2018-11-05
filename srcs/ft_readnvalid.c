@@ -19,7 +19,6 @@ bool	ft_read_figure(string file_name, t_figure **figure)
 	size_t		nlines;
 
 	nlines = 0;
-	_ERR_NOTIS(*figure);
 	fd = open(file_name, O_RDONLY);
 	while (ft_gnl(fd, &temp) > 0)
 	{

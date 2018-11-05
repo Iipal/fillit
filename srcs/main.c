@@ -42,9 +42,9 @@ int		main(int argc, string *argv)
 	if (ft_errno_args(&argc) && *argv)
 	{
 		_ERR_NOTIS_MSG(ft_read_figure(*argv, &figure));
+		free_figure(&figure);
 	}
 	else
 		_ERR_MSG;
-	free_figure(&figure);
 	free(figure);
 }

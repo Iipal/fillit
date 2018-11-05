@@ -27,7 +27,7 @@ lft:
 	$(LMAKE) re
 
 $P:
-	$(CC) $(SRCS)main.c $(SRCS)ft_errno_validfile.c $(SRCS)ft_gnl.c \
+	$(CC) $(SRCS)main.c $(SRCS)ft_readnvalid.c $(SRCS)ft_gnl.c \
 	$(LFLAGS) $(CFLAGS) ./$P
 
 clean:
