@@ -36,14 +36,17 @@ int			main(int argc, string *argv)
 	t_figure	*figure;
 
 	argv++;
-	_ERR_NOTIS_MSG(figure = (t_figure*)malloc(sizeof(t_figure)));
+	_ERR_NOTIS_MSG(figure = (t_figure*)malloc(sizeof(t_figure)),
+						"failure with struct allocation.");
 	if (ft_errno_args(&argc) && *argv)
 	{
-		_ERR_NOTIS_MSG(ft_read_figure(*argv, &figure));
-		_ERR_NOTIS_MSG(ft_valid_figure(figure));
+		_ERR_NOTIS_MSG(ft_read_figure(*argv, &figure),
+						"failure with file reading.");
+		_ERR_NOTIS_MSG(ft_valid_figure(figure),
+						"failure figure validating.");
 		ft_free_figure(&figure);
 	}
 	else
-		_ERR_MSG;
+		_ERR_MSG("where is file name ?");
 	free(figure);
 }

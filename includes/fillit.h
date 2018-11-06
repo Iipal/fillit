@@ -45,9 +45,9 @@ typedef struct	s_additional
 
 # define BUFF_SIZE	42
 
-# define _ERR_MSG	ft_putendl("error!")
+# define _ERR_MSG(msg)	ft_putendl(msg)
 # define _ERR_NOTIS(ex)	if (!(ex)) return (false)
-# define _ERR_NOTIS_MSG(ex)	if (!(ex)) { _ERR_MSG; return (false); }
+# define _ERR_NOTIS_MSG(ex, m) if (!(ex)) { _ERR_MSG(m); return (false); }
 # define _ERR_NOTIS_O(ex, out)	if (!(ex)) return (out)
 
 int				ft_gnl(const int fd, string *line);
