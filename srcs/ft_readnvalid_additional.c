@@ -20,7 +20,6 @@ void	ft_addch(t_add add)
 		ft_addcheck_second(add.i, add.j, add.n, add.figu);
 	else
 		ft_addcheck_third(add.i, add.j, add.n, add.figu);
-
 }
 
 void	ft_addcheck_first(int i, int j, int *neighbors, t_figure *figure)

@@ -34,8 +34,6 @@ typedef struct	s_figure
 	size_t	lines;
 }				t_figure;
 
-t_list			g_patterns;
-
 typedef struct	s_additional
 {
 	t_figure	*figu;
