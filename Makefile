@@ -12,7 +12,7 @@
 
 P = fillit
 
-CC = gcc
+CC = gcc -march=native
 CFLAGS = -Wall -Wextra -Werror -o
 LFLAGS = -L libft/ -lft
 LMAKE = make -C libft/
@@ -28,6 +28,7 @@ lft:
 
 $P:
 	$(CC) $(SRCS)main.c $(SRCS)ft_readnvalid.c $(SRCS)ft_gnl.c \
+	$(SRCS)ft_readnvalid_additional.c \
 	$(LFLAGS) $(CFLAGS) ./$P
 
 clean:

@@ -34,6 +34,17 @@ typedef struct	s_figure
 	size_t	lines;
 }				t_figure;
 
+t_list			g_patterns;
+
+typedef struct	s_additional
+{
+	t_figure	*figu;
+	int			i;
+	int			j;
+	int			*n;
+
+}				t_add;
+
 # define BUFF_SIZE	42
 
 # define _ERR_MSG	ft_putendl("error!")
@@ -45,5 +56,15 @@ int				ft_gnl(const int fd, string *line);
 
 bool			ft_errno_args(int *argc);
 bool			ft_read_figure(string file_name, t_figure **figure);
+bool			ft_free_figure(t_figure **figure);
+bool			ft_valid_figure(t_figure *figure);
+
+void			ft_addch(t_add add);
+void			ft_addcheck_first(int i, int j,
+							int *neighbors, t_figure *figure);
+void			ft_addcheck_second(int i, int j,
+							int *neighbors, t_figure *figure);
+void			ft_addcheck_third(int i, int j,
+							int *neighbors, t_figure *figure);
 
 #endif

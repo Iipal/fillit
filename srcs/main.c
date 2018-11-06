@@ -12,19 +12,6 @@
 
 #include "../includes/fillit.h"
 
-bool		free_figure(t_figure **figure)
-{
-	size_t	i;
-
-	i = -1;
-	_ERR_NOTIS(*figure);
-	while (++i < (*figure)->lines)
-		free((*figure)->tab[i]);
-	free(*figure);
-	*figure = NULL;
-	return (true);
-}
-
 bool		ft_errno_args(int *argc)
 {
 	(*argc)--;
@@ -33,16 +20,28 @@ bool		ft_errno_args(int *argc)
 	return (true);
 }
 
+void		ft_show(t_figure *figure)
+{
+	size_t	i;
+
+	i = -1;
+	ft_putnbr(figure->lines);
+	ft_putchar('\n');
+	while (++i < figure->lines)
+		ft_putendl(figure->tab[i]);
+}
+
 int			main(int argc, string *argv)
 {
 	t_figure	*figure;
 
 	argv++;
-	_ERR_NOTIS_MSG(figure = (t_figure*)malloc(sizeof(t_figure)))
+	_ERR_NOTIS_MSG(figure = (t_figure*)malloc(sizeof(t_figure)));
 	if (ft_errno_args(&argc) && *argv)
 	{
 		_ERR_NOTIS_MSG(ft_read_figure(*argv, &figure));
-		free_figure(&figure);
+		_ERR_NOTIS_MSG(ft_valid_figure(figure));
+		ft_free_figure(&figure);
 	}
 	else
 		_ERR_MSG;
