@@ -15,6 +15,7 @@
 
 # include "../libft/includes/libft.h"
 # include <fcntl.h>
+# include <stdio.h>
 
 enum	e_bool
 {
@@ -50,12 +51,15 @@ typedef struct	s_additional
 # define _ERR_NOTIS_MSG(ex, m) if (!(ex)) { _ERR_MSG(m); return (false); }
 # define _ERR_NOTIS_O(ex, out)	if (!(ex)) return (out)
 
+t_list			*g_list;
+
 int				ft_gnl(const int fd, string *line);
 
 bool			ft_errno_args(int *argc);
 bool			ft_read_figure(string file_name, t_figure **figure);
 bool			ft_free_figure(t_figure **figure);
 bool			ft_valid_figure(t_figure *figure);
+bool			ft_cut_figure(t_figure *figure);
 
 void			ft_addch(t_add add);
 void			ft_addcheck_first(int i, int j,

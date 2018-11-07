@@ -20,22 +20,12 @@ bool		ft_errno_args(int *argc)
 	return (true);
 }
 
-void		ft_show(t_figure *figure)
-{
-	size_t	i;
-
-	i = -1;
-	ft_putnbr(figure->lines);
-	ft_putchar('\n');
-	while (++i < figure->lines)
-		ft_putendl(figure->tab[i]);
-}
-
 int			main(int argc, string *argv)
 {
 	t_figure	*figure;
 
 	argv++;
+	g_list = NULL;
 	_ERR_NOTIS_MSG(figure = (t_figure*)malloc(sizeof(t_figure)),
 						"failure with struct allocation.");
 	if (ft_errno_args(&argc) && *argv)
@@ -44,6 +34,8 @@ int			main(int argc, string *argv)
 						"failure with file reading.");
 		_ERR_NOTIS_MSG(ft_valid_figure(figure),
 						"failure figure validating.");
+		_ERR_NOTIS_MSG(ft_cut_figure(figure),
+						"failure figure cuting.");
 		ft_free_figure(&figure);
 	}
 	else

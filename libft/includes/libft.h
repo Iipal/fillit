@@ -13,6 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -60,6 +61,8 @@ size_t			ft_strlen(const char *str);
 size_t			ft_strlcat(char *restrict dest,
 							const char *restrict src,
 							size_t dstsize);
+size_t			ft_strrchri(const char *s, int c);
+size_t			ft_strchri(const char *s, int c);
 
 char			*ft_strdup(const char *src);
 char			*ft_strcpy(char *dest, const char *str);

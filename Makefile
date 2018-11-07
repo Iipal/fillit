@@ -28,7 +28,7 @@ lft:
 
 $P:
 	$(CC) $(SRCS)main.c $(SRCS)ft_readnvalid.c $(SRCS)ft_gnl.c \
-	$(SRCS)ft_readnvalid_additional.c \
+	$(SRCS)ft_readnvalid_additional.c $(SRCS)ft_cut_figure.c \
 	$(LFLAGS) $(CFLAGS) ./$P
 
 clean:
