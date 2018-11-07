@@ -32,7 +32,7 @@ bool	ft_read_figure(string file_name, t_figure **figure)
 	nlines = -1;
 	while (ft_gnl(fd, &temp) > 0)
 	{
-		_ERR_NOTIS(ft_strlen(temp) != ((++nlines + 1) % 5 ? 4 : 0));
+		_ERR_NOTIS(ft_strlen(temp) == ((++nlines + 1) % 5 ? 4 : 0));
 		(*figure)->tab[nlines] = ft_strdup(temp);
 		ft_strdel(&temp);
 	}

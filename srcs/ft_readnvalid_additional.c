@@ -29,7 +29,7 @@ void	ft_addcheck_first(int i, int j, int *neighbors, t_figure *figure)
 		(figure->tab[i][j + 1] == '#') ? ++(*neighbors) : 0;
 		(figure->tab[i + 1][j] == '#') ? ++(*neighbors) : 0;
 	}
-	else if (i % 5 == 4)
+	else if (i % 5 == 3)
 	{
 		(figure->tab[i][j + 1] == '#') ? ++(*neighbors) : 0;
 		(figure->tab[i - 1][j] == '#') ? ++(*neighbors) : 0;
@@ -49,7 +49,7 @@ void	ft_addcheck_second(int i, int j, int *neighbors, t_figure *figure)
 		(figure->tab[i][j - 1] == '#') ? ++(*neighbors) : 0;
 		(figure->tab[i + 1][j] == '#') ? ++(*neighbors) : 0;
 	}
-	else if (i % 5 == 4)
+	else if (i % 5 == 3)
 	{
 		(figure->tab[i][j - 1] == '#') ? ++(*neighbors) : 0;
 		(figure->tab[i - 1][j] == '#') ? ++(*neighbors) : 0;
@@ -70,7 +70,7 @@ void	ft_addcheck_third(int i, int j, int *neighbors, t_figure *figure)
 		(figure->tab[i][j - 1] == '#') ? ++(*neighbors) : 0;
 		(figure->tab[i + 1][j] == '#') ? ++(*neighbors) : 0;
 	}
-	else if (i % 5 == 4)
+	else if (i % 5 == 3)
 	{
 		(figure->tab[i][j + 1] == '#') ? ++(*neighbors) : 0;
 		(figure->tab[i][j - 1] == '#') ? ++(*neighbors) : 0;
