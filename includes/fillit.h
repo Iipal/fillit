@@ -29,10 +29,18 @@ enum	e_bool
 _BOOL;
 _STR;
 
+typedef struct	s_cutf
+{
+	size_t	*x;
+	size_t	*y;
+	size_t	famount;
+}				t_cutf;
+
 typedef struct	s_figure
 {
 	string	*tab;
 	size_t	lines;
+	t_cutf	*cut;
 }				t_figure;
 
 typedef struct	s_additional
@@ -51,13 +59,13 @@ typedef struct	s_additional
 # define _ERR_NOTIS_MSG(ex, m) if (!(ex)) { _ERR_MSG(m); return (false); }
 # define _ERR_NOTIS_O(ex, out)	if (!(ex)) return (out)
 
-t_list			*g_list;
 
 int				ft_gnl(const int fd, string *line);
 
+bool			ft_free(t_figure **figure);
+
 bool			ft_errno_args(int *argc);
 bool			ft_read_figure(string file_name, t_figure **figure);
-bool			ft_free_figure(t_figure **figure);
 bool			ft_valid_figure(t_figure *figure);
 bool			ft_cut_figure(t_figure *figure);
 

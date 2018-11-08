@@ -25,7 +25,6 @@ int			main(int argc, string *argv)
 	t_figure	*figure;
 
 	argv++;
-	g_list = NULL;
 	_ERR_NOTIS_MSG(figure = (t_figure*)malloc(sizeof(t_figure)),
 						"failure with struct allocation.");
 	if (ft_errno_args(&argc) && *argv)
@@ -36,7 +35,7 @@ int			main(int argc, string *argv)
 						"failure figure validating.");
 		_ERR_NOTIS_MSG(ft_cut_figure(figure),
 						"failure figure cuting.");
-		ft_free_figure(&figure);
+		ft_free(&figure);
 	}
 	else
 		_ERR_MSG("where is file name ?");

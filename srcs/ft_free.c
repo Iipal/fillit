@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cut_figu.c                                      :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/07 16:33:33 by tmaluh            #+#    #+#             */
-/*   Updated: 2018/11/07 16:33:35 by tmaluh           ###   ########.fr       */
+/*   Created: 2018/11/08 10:23:12 by tmaluh            #+#    #+#             */
+/*   Updated: 2018/11/08 10:23:13 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
 
-bool	ft_cut_figure(t_figure *figu)
+bool	ft_free(t_figure **figure)
 {
 	size_t	i;
-	size_t	len;
-	string	temp;
 
 	i = -1;
-	temp = ft_strnew(0);
-	figu->cut = (t_cutf*)malloc(sizeof(t_cutf));
-	_ERR_NOTIS(figu->cut);
-	while (++i < figu->lines)
-	{
-		if (!((i + 1) % 5) || ((i + 1) == figu->lines))
-		{
-			len = i;
-			i -= 5;
-			while (++i < len)
-			{
-				printf("%s\n", figu->tab[i]);
-			}
-			printf("\n");
-		}
-	}
+	while (++i < (*figure)->lines)
+		free((*figure)->tab[i]);
+	free((*figure)->cut->x);
+	free((*figure)->cut->y);
+	free((*figure)->cut);
+	free(*figure);
+	*figure = NULL;
 	return (true);
 }

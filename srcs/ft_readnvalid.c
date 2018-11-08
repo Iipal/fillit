@@ -40,19 +40,6 @@ bool	ft_read_figure(string file_name, t_figure **figure)
 	return (true);
 }
 
-bool	ft_free_figure(t_figure **figure)
-{
-	size_t	i;
-
-	i = -1;
-	_ERR_NOTIS(*figure);
-	while (++i < (*figure)->lines)
-		free((*figure)->tab[i]);
-	free(*figure);
-	*figure = NULL;
-	return (true);
-}
-
 bool	ft_valid_each_figure(t_figure *figure, int i)
 {
 	int		i_1;
