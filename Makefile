@@ -13,7 +13,7 @@
 P = fillit
 
 CC = gcc -march=native
-CFLAGS = -Wall -Wextra -Werror -o
+CFLAGS = -Wall -Wextra -Werror -Wno-unused-but-set-variable -o
 LFLAGS = -L libft/ -lft
 LMAKE = make -C libft/
 

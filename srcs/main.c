@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ipal <ipal@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/03 11:07:54 by tmaluh            #+#    #+#             */
-/*   Updated: 2018/11/03 13:25:04 by tmaluh           ###   ########.fr       */
+/*   Updated: 2018/11/08 21:37:10 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
 
-void	ft_free_all(t_file **file, t_figurelist **fl);
+void	ft_free_file(t_file **file);
+void	ft_free_list(t_figurelist **fl);
 bool	ft_errno_args(int *argc);
 
 int		main(int argc, string *argv)
@@ -31,11 +32,11 @@ int		main(int argc, string *argv)
 						"failure file validating.");
 		_ERR_NOTIS_MSG(figure_list = ft_cut_figure(file),
 						"failure figure cuting.");
-		ft_free_all(&file, &figure_list);
+		ft_free_file(&file);
+		ft_free_list(&figure_list);
 	}
 	else
 		_ERR_MSG("where is file name ?");
-	free(file);
 }
 
 bool	ft_errno_args(int *argc)
@@ -46,19 +47,15 @@ bool	ft_errno_args(int *argc)
 	return (true);
 }
 
-void	ft_free_all(t_file **file, t_figurelist **fl)
+void	ft_free_list(t_figurelist **fl)
 {
-	int				i;
 	t_figurelist	*temp;
+	int				i;
 
-	i = -1;
-	while ((size_t)++i < (*file)->lines)
-		free((*file)->tab[i]);
-	free((*file)->tab);
 	while (*fl)
 	{
-		i = -1;
 		temp = (*fl)->next;
+		i = -1;
 		while (++i < (*fl)->curr_fig->height)
 			free((*fl)->curr_fig->tab[i]);
 		free((*fl)->curr_fig->tab);
@@ -66,8 +63,16 @@ void	ft_free_all(t_file **file, t_figurelist **fl)
 		free(*fl);
 		*fl = temp;
 	}
-	free(*fl);
-	free(temp);
-	fl = NULL;
+}
+
+void	ft_free_file(t_file **file)
+{
+	int				i;
+
+	i = -1;
+	while ((size_t)++i < (*file)->lines)
+		free((*file)->tab[i]);
+	free((*file)->tab);
+	free(*file);
 	file = NULL;
 }
