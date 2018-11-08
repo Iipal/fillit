@@ -40,7 +40,7 @@ int		ft_catline_recursive(int fd, string *data, string *line, int nbytes)
 	return (1);
 }
 
-int		ft_gnl(const int fd, string *line)
+int		ft_gnl(const int fd, char **line)
 {
 	static string	data[255];
 	string			temp;

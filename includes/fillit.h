@@ -29,27 +29,39 @@ enum	e_bool
 _BOOL;
 _STR;
 
-typedef struct	s_cutf
+typedef struct	s_point
 {
-	size_t	*x;
-	size_t	*y;
-	size_t	famount;
-}				t_cutf;
+	int		x;
+	int		y;
+}				t_point;
 
 typedef struct	s_figure
 {
+	t_point		min;
+	t_point		max;
+	string		*tab;
+	int			width;
+	int			height;
+}				t_figure;
+
+typedef struct	s_figurelist
+{
+	t_figure			*curr_fig;
+	struct s_figurelist	*next;
+}				t_figurelist;
+
+typedef struct	s_file
+{
 	string	*tab;
 	size_t	lines;
-	t_cutf	*cut;
-}				t_figure;
+}				t_file;
 
 typedef struct	s_additional
 {
-	t_figure	*figu;
+	t_file		*file;
 	int			i;
 	int			j;
 	int			*n;
-
 }				t_add;
 
 # define BUFF_SIZE	42
@@ -59,22 +71,19 @@ typedef struct	s_additional
 # define _ERR_NOTIS_MSG(ex, m) if (!(ex)) { _ERR_MSG(m); return (false); }
 # define _ERR_NOTIS_O(ex, out)	if (!(ex)) return (out)
 
-
 int				ft_gnl(const int fd, string *line);
 
-bool			ft_free(t_figure **figure);
-
 bool			ft_errno_args(int *argc);
-bool			ft_read_figure(string file_name, t_figure **figure);
-bool			ft_valid_figure(t_figure *figure);
-bool			ft_cut_figure(t_figure *figure);
+bool			ft_read_file(string file_name, t_file **file);
+bool			ft_valid_file(t_file *file);
+t_figurelist	*ft_cut_figure(t_file *file);
 
 void			ft_addch(t_add add);
 void			ft_addcheck_first(int i, int j,
-							int *neighbors, t_figure *figure);
+							int *neighbors, t_file *file);
 void			ft_addcheck_second(int i, int j,
-							int *neighbors, t_figure *figure);
+							int *neighbors, t_file *file);
 void			ft_addcheck_third(int i, int j,
-							int *neighbors, t_figure *figure);
+							int *neighbors, t_file *file);
 
 #endif
