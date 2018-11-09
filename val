@@ -1,1 +1,0 @@
-valgrind -v --tool=memcheck --leak-check=full --num-callers=40 --log-file=valgrind.log ~/code/fillit/fillit test/valid_sample.fillit

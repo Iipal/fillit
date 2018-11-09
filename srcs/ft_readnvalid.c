@@ -23,7 +23,7 @@ bool	ft_read_file(string file_name, t_file **file)
 	while ((ft_gnl(fd, &temp) > 0) && ++nlines)
 		ft_strdel(&temp);
 	close(fd);
-	_ERR_NOTIS(nlines);
+	_ERR_NOTIS(nlines % 5 == 4);
 	_ERR_NOTIS(!(nlines > 130 || nlines < 4));
 	(*file)->lines = nlines;
 	(*file)->tab = (string*)malloc(sizeof(string) * (*file)->lines);

@@ -57,20 +57,20 @@ int		main(int argc, string *argv)
 
 	argv++;
 	_ERR_NOTIS_MSG(file = (t_file*)malloc(sizeof(t_file)),
-						"failure with struct allocation.");
+						"error");
 	if (ft_errno_args(&argc) && *argv)
 	{
 		_ERR_NOTIS_MSG(ft_read_file(*argv, &file),
-						"failure with file reading.");
+						"error");
 		_ERR_NOTIS_MSG(ft_valid_file(file),
-						"failure file validating.");
+						"error");
 		_ERR_NOTIS_MSG(figure_list = ft_cut_figure(file),
-						"failure figure cuting.");
+						"error");
 		ft_free_file(&file);
 		_ERR_NOTIS_MSG(ft_solve(figure_list),
-						"failure backtracking.");
+						"error");
 		ft_free_list(&figure_list);
 	}
 	else
-		_ERR_MSG("where is file name ?");
+		_ERR_MSG("usage: ./fillit <file_name>");
 }
