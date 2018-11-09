@@ -12,33 +12,6 @@
 
 #include "../includes/fillit.h"
 
-void	ft_free_file(t_file **file);
-void	ft_free_list(t_figurelist **fl);
-bool	ft_errno_args(int *argc);
-
-int		main(int argc, string *argv)
-{
-	t_file			*file;
-	t_figurelist	*figure_list;
-
-	argv++;
-	_ERR_NOTIS_MSG(file = (t_file*)malloc(sizeof(t_file)),
-						"failure with struct allocation.");
-	if (ft_errno_args(&argc) && *argv)
-	{
-		_ERR_NOTIS_MSG(ft_read_file(*argv, &file),
-						"failure with file reading.");
-		_ERR_NOTIS_MSG(ft_valid_file(file),
-						"failure file validating.");
-		_ERR_NOTIS_MSG(figure_list = ft_cut_figure(file),
-						"failure figure cuting.");
-		ft_free_file(&file);
-		ft_free_list(&figure_list);
-	}
-	else
-		_ERR_MSG("where is file name ?");
-}
-
 bool	ft_errno_args(int *argc)
 {
 	(*argc)--;
@@ -75,4 +48,29 @@ void	ft_free_file(t_file **file)
 	free((*file)->tab);
 	free(*file);
 	file = NULL;
+}
+
+int		main(int argc, string *argv)
+{
+	t_file			*file;
+	t_figurelist	*figure_list;
+
+	argv++;
+	_ERR_NOTIS_MSG(file = (t_file*)malloc(sizeof(t_file)),
+						"failure with struct allocation.");
+	if (ft_errno_args(&argc) && *argv)
+	{
+		_ERR_NOTIS_MSG(ft_read_file(*argv, &file),
+						"failure with file reading.");
+		_ERR_NOTIS_MSG(ft_valid_file(file),
+						"failure file validating.");
+		_ERR_NOTIS_MSG(figure_list = ft_cut_figure(file),
+						"failure figure cuting.");
+		ft_free_file(&file);
+		_ERR_NOTIS_MSG(ft_solve(figure_list),
+						"failure backtracking.");
+		ft_free_list(&figure_list);
+	}
+	else
+		_ERR_MSG("where is file name ?");
 }

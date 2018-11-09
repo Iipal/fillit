@@ -15,7 +15,6 @@
 
 # include "../libft/includes/libft.h"
 # include <fcntl.h>
-# include <stdio.h>
 
 enum	e_bool
 {
@@ -42,6 +41,7 @@ typedef struct	s_figure
 	string		*tab;
 	int			width;
 	int			height;
+	char		symb;
 }				t_figure;
 
 typedef struct	s_figurelist
@@ -64,6 +64,12 @@ typedef struct	s_additional
 	int			*n;
 }				t_add;
 
+typedef struct	s_map
+{
+	string		*tab;
+	int			size;
+}				t_map;
+
 # define BUFF_SIZE	42
 
 # define _ERR_MSG(msg)	ft_putendl(msg)
@@ -72,12 +78,15 @@ typedef struct	s_additional
 # define _ERR_NOTIS_O(ex, out)	if (!(ex)) return (out)
 
 t_figurelist	*ft_cut_figure(t_file *file);
+t_map			*ft_create_map(int size);
 
 int				ft_gnl(const int fd, string *line);
+int				ft_mapsize(t_figurelist *flist);
 
 bool			ft_errno_args(int *argc);
 bool			ft_read_file(string file_name, t_file **file);
 bool			ft_valid_file(t_file *file);
+bool			ft_solve(t_figurelist *fl);
 
 void			ft_addch(t_add add);
 void			ft_addcheck_first(int i, int j,
@@ -86,5 +95,7 @@ void			ft_addcheck_second(int i, int j,
 							int *neighbors, t_file *file);
 void			ft_addcheck_third(int i, int j,
 							int *neighbors, t_file *file);
+void			ft_display_map(t_map *map);
+void			ft_free_map(t_map **map);
 
 #endif

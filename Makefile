@@ -10,34 +10,46 @@
 #                                                                              #
 # **************************************************************************** #
 
-P = fillit
+NAME = fillit
 
-CC = gcc -march=native
-CFLAGS = -Wall -Wextra -Werror -o
-LFLAGS = -L libft/ -lft
-LMAKE = make -C libft/
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ./srcs/
+SRC = srcs/main.c\
+		srcs/ft_cut_figure.c \
+		srcs/ft_gnl.c \
+		srcs/ft_map.c \
+		srcs/ft_readnvalid.c \
+		srcs/ft_readnvalid_additional.c \
+		srcs/ft_solve.c
+
+OBJ = $(SRC:.c=.o)
+
+LIBFT = libft/libft.a
+
+LMAKE = make -C libft
 
 DEL = rm -rf
 
-all: lft $P
+all: $(NAME)
 
-lft:
-	$(LMAKE) re
+$(OBJ): %.o: %.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
-$P:
-	$(CC) $(SRCS)main.c $(SRCS)ft_readnvalid.c $(SRCS)ft_gnl.c \
-	$(SRCS)ft_readnvalid_additional.c $(SRCS)ft_cut_figure.c \
-	$(LFLAGS) $(CFLAGS) ./$P
+$(LIBFT):
+	$(LMAKE)
+
+$(NAME): $(LIBFT) $(OBJ)
+	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
 
 clean:
+	$(DEL) $(OBJ)
 	$(LMAKE) clean
 
 fclean: clean
+	$(DEL) -rf $(NAME)
 	$(LMAKE) fclean
-	$(DEL) ./$P
 
 re: fclean all
 
-.PHONY: all clean fclean re $P
+.PHONY: all clean fclean clean re

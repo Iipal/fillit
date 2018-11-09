@@ -18,7 +18,7 @@ static char		**get_chunkf(t_file *file, t_figurelist *figure_list,
 	char	**cut_fig;
 	int		j;
 	int		k;
-	
+
 	figure_list->curr_fig->width = figure_list->curr_fig->max.x -
 		figure_list->curr_fig->min.x + 1;
 	figure_list->curr_fig->height = figure_list->curr_fig->max.y -
@@ -78,8 +78,10 @@ t_figurelist	*ft_cut_figure(t_file *file)
 	t_figurelist	*flist;
 	t_figurelist	*temp;
 	int				j;
+	char			ch;
 
 	i = 0;
+	ch = 'A';
 	_ERR_NOTIS_O(flist = (t_figurelist *)malloc(sizeof(t_figurelist)), NULL);
 	while ((unsigned int)i < file->lines)
 	{
@@ -90,11 +92,9 @@ t_figurelist	*ft_cut_figure(t_file *file)
 		find_range(flist, file, i);
 		_ERR_NOTIS_O(flist->curr_fig->tab = get_chunkf(file, flist, i), NULL);
 		i += 5;
-		if (i > (int)file->lines)
-			flist->next = NULL;
-		else
-			_ERR_NOTIS_O(flist->next = (t_figurelist*)malloc(
-											sizeof(t_figurelist)), NULL);
+		flist->next = (i > (int)file->lines) ? NULL :
+				(t_figurelist*)malloc(sizeof(t_figurelist));
+		flist->curr_fig->symb = ch++;
 		flist = flist->next;
 	}
 	flist = temp;

@@ -20,11 +20,8 @@ bool	ft_read_file(string file_name, t_file **file)
 
 	nlines = 0;
 	fd = open(file_name, O_RDONLY);
-	while (ft_gnl(fd, &temp) > 0)
-	{
-		nlines++;
+	while ((ft_gnl(fd, &temp) > 0) && ++nlines)
 		ft_strdel(&temp);
-	}
 	close(fd);
 	_ERR_NOTIS(nlines);
 	_ERR_NOTIS(!(nlines > 130 || nlines < 4));
