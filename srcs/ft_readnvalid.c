@@ -26,15 +26,25 @@ static int	ft_lines_counter(string fn)
 	return (lines);
 }
 
+static bool	ft_check_lines(int lines)
+{
+	if (lines < 10)
+		return (lines == 3 || lines == 8);
+	else if (lines < 100)
+		return (lines % 10 == 3 || lines % 10 == 8);
+	else
+		return (lines % 10 == 3 || lines % 10 == 8);
+	return (false);
+}
+
 bool	ft_read_file(string file_name, t_file **file)
 {
 	string		temp;
 	int			fd;
 	int			nlines;
 
-	nlines = ft_lines_counter(file_name);
-	fd = open(file_name, O_RDONLY);
-	_ERR_NOTIS((nlines <= 4) ? (nlines % 3 == 0) : (nlines % 4 == 0));
+	_ERR_NOTIS(nlines = ft_lines_counter(file_name));
+	_ERR_NOTIS(ft_check_lines(nlines));
 	_ERR_NOTIS(!(nlines > 130 || nlines < 3));
 	(*file)->lines = nlines;
 	(*file)->tab = (string*)malloc(sizeof(string) * (*file)->lines + 1);
