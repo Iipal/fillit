@@ -54,13 +54,3 @@ t_map		*ft_create_map(int size)
 	}
 	return (new);
 }
-
-void		ft_free_map(t_map **map)
-{
-	int				i;
-
-	i = -1;
-	while (++i < (*map)->size)
-		free((*map)->tab[i]);
-	free((*map)->tab);
-}

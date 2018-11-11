@@ -12,29 +12,40 @@
 
 #include "../includes/fillit.h"
 
+static int	ft_lines_counter(string fn)
+{
+	char	*temp;
+	int		fd;
+	int		lines;
+
+	lines = -1;
+	fd = open(fn, O_RDONLY);
+	while ((ft_gnl(fd, &temp) > 0) && (++lines >= 0))
+		ft_strdel(&temp);
+	close(fd);
+	return (lines);
+}
+
 bool	ft_read_file(string file_name, t_file **file)
 {
 	string		temp;
 	int			fd;
-	size_t		nlines;
+	int			nlines;
 
-	nlines = 0;
+	nlines = ft_lines_counter(file_name);
 	fd = open(file_name, O_RDONLY);
-	while ((ft_gnl(fd, &temp) > 0) && ++nlines)
-		ft_strdel(&temp);
-	close(fd);
-	_ERR_NOTIS(nlines % 5 == 4);
-	_ERR_NOTIS(!(nlines > 130 || nlines < 4));
+	_ERR_NOTIS((nlines <= 4) ? (nlines % 3 == 0) : (nlines % 4 == 0));
+	_ERR_NOTIS(!(nlines > 130 || nlines < 3));
 	(*file)->lines = nlines;
-	(*file)->tab = (string*)malloc(sizeof(string) * (*file)->lines);
+	(*file)->tab = (string*)malloc(sizeof(string) * (*file)->lines + 1);
 	_ERR_NOTIS((*file)->tab);
-	fd = open(file_name, O_RDONLY);
 	nlines = -1;
+	fd = open(file_name, O_RDONLY);
 	while (ft_gnl(fd, &temp) > 0)
 	{
 		_ERR_NOTIS(ft_strlen(temp) == ((++nlines + 1) % 5 ? 4 : 0));
 		(*file)->tab[nlines] = ft_strdup(temp);
-		ft_strdel(&temp);
+		nlines < (*file)->lines ? ft_strdel(&temp) : 0;
 	}
 	close(fd);
 	return (true);
@@ -71,7 +82,7 @@ bool	ft_valid_each_figure(t_file *file, int i)
 
 bool	ft_valid_file(t_file *file)
 {
-	size_t	i;
+	int		i;
 
 	i = 0;
 	while (i < file->lines)

@@ -39,7 +39,7 @@ static bool	ft_empty_place(t_map *map, t_figurelist *fl, t_point point)
 		j = -1;
 		while (++j < fl->curr_fig->height)
 			if (fl->curr_fig->tab[j][i] == '#' &&
-				map->tab[point.y + j][point.x + i] != '.')
+					map->tab[point.y + j][point.x + i] != '.')
 				return (false);
 	}
 	ft_alloc_on_map(map, fl, point, fl->curr_fig->symb);
@@ -57,7 +57,6 @@ bool		ft_btsmap(t_map *map, t_figurelist *fl)
 	{
 		point.x = -1;
 		while (++(point.x) < map->size - fl->curr_fig->width + 1)
-		{
 			if (ft_empty_place(map, fl, point))
 			{
 				if (ft_btsmap(map, fl->next))
@@ -65,7 +64,6 @@ bool		ft_btsmap(t_map *map, t_figurelist *fl)
 				else
 					ft_alloc_on_map(map, fl, point, '.');
 			}
-		}
 	}
 	return (false);
 }

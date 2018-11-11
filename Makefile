@@ -13,7 +13,7 @@
 NAME = fillit
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Wno-unused-but-set-variable
 
 SRC = srcs/main.c\
 		srcs/ft_cut_figure.c \
@@ -21,7 +21,8 @@ SRC = srcs/main.c\
 		srcs/ft_map.c \
 		srcs/ft_readnvalid.c \
 		srcs/ft_readnvalid_additional.c \
-		srcs/ft_solve.c
+		srcs/ft_solve.c \
+		srcs/ft_free.c
 
 OBJ = $(SRC:.c=.o)
 

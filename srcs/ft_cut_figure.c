@@ -83,7 +83,7 @@ t_figurelist	*ft_cut_figure(t_file *file)
 	i = 0;
 	ch = 'A';
 	_ERR_NOTIS_O(flist = (t_figurelist *)malloc(sizeof(t_figurelist)), NULL);
-	while ((unsigned int)i < file->lines)
+	while (i < file->lines)
 	{
 		j = -1;
 		_ERR_NOTIS_O(flist->curr_fig = (t_figure*)malloc(
@@ -92,7 +92,7 @@ t_figurelist	*ft_cut_figure(t_file *file)
 		find_range(flist, file, i);
 		_ERR_NOTIS_O(flist->curr_fig->tab = get_chunkf(file, flist, i), NULL);
 		i += 5;
-		flist->next = (i > (int)file->lines) ? NULL :
+		flist->next = (i > file->lines) ? NULL :
 				(t_figurelist*)malloc(sizeof(t_figurelist));
 		flist->curr_fig->symb = ch++;
 		flist = flist->next;

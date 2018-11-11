@@ -22,26 +22,33 @@ enum	e_bool
 	true
 };
 
-# define _BOOL		typedef enum e_bool		bool
-# define _STR		typedef char*			string
+# define _BOOL	typedef enum e_bool	bool
+# define _STR	typedef char*		string
+
+# define BUFF_SIZE	42
+
+# define _ERR_MSG(msg) ft_putendl(msg)
+# define _ERR_NOTIS(ex) if (!(ex)) return (false)
+# define _ERR_NOTIS_MSG(ex) if (!(ex)) { _ERR_MSG("error"); return (false); }
+# define _ERR_NOTIS_O(ex, out) if (!(ex)) return (out)
 
 _BOOL;
 _STR;
 
 typedef struct	s_point
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 }				t_point;
 
 typedef struct	s_figure
 {
-	t_point		min;
-	t_point		max;
-	string		*tab;
-	int			width;
-	int			height;
-	char		symb;
+	t_point	min;
+	t_point	max;
+	string	*tab;
+	int		width;
+	int		height;
+	char	symb;
 }				t_figure;
 
 typedef struct	s_figurelist
@@ -53,29 +60,22 @@ typedef struct	s_figurelist
 typedef struct	s_file
 {
 	string	*tab;
-	size_t	lines;
+	int		lines;
 }				t_file;
 
 typedef struct	s_additional
 {
-	t_file		*file;
-	int			i;
-	int			j;
-	int			*n;
+	t_file	*file;
+	int		i;
+	int		j;
+	int		*n;
 }				t_add;
 
 typedef struct	s_map
 {
-	string		*tab;
-	int			size;
+	string	*tab;
+	int		size;
 }				t_map;
-
-# define BUFF_SIZE	42
-
-# define _ERR_MSG(msg)	ft_putendl(msg)
-# define _ERR_NOTIS(ex)	if (!(ex)) return (false)
-# define _ERR_NOTIS_MSG(ex, m) if (!(ex)) { _ERR_MSG(m); return (false); }
-# define _ERR_NOTIS_O(ex, out)	if (!(ex)) return (out)
 
 t_figurelist	*ft_cut_figure(t_file *file);
 t_map			*ft_create_map(int size);
@@ -97,5 +97,7 @@ void			ft_addcheck_third(int i, int j,
 							int *neighbors, t_file *file);
 void			ft_display_map(t_map *map);
 void			ft_free_map(t_map **map);
+void			ft_free_list(t_figurelist **fl);
+void			ft_free_file(t_file **file);
 
 #endif
