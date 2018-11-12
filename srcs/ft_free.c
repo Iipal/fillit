@@ -42,11 +42,11 @@ void	ft_free_list(t_figurelist **fl)
 
 void	ft_free_file(t_file **file)
 {
-	int				i;
+	int	i;
 
 	i = -1;
-	while (++i < (*file)->lines)
-		free((*file)->tab[i]);
+	while (++i < ((*file)->lines))
+		ft_strdel(&((*file)->tab[i]));
 	free((*file)->tab);
 	free(*file);
 	file = NULL;

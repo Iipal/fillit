@@ -30,6 +30,7 @@ int		main(int argc, string *argv)
 	if (ft_errno_args(&argc) && *argv)
 	{
 		_ERR_NOTIS_MSG(ft_read_file(*argv, &file));
+		_ERR_NOTIS_MSG(ft_addcheck_dots(file));
 		_ERR_NOTIS_MSG(ft_valid_file(file));
 		_ERR_NOTIS_MSG(figure_list = ft_cut_figure(file));
 		ft_free_file(&file);

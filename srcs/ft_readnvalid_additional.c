@@ -12,6 +12,23 @@
 
 #include "../includes/fillit.h"
 
+bool	ft_addcheck_dots(t_file *file)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < file->lines)
+	{
+		j = -1;
+		while (file->tab[i][++j] != '\0')
+			if (file->tab[i][j] != '.' && file->tab[i][j] != '#')
+				return (false);
+	}
+	return (true);
+
+}
+
 void	ft_addch(t_add add)
 {
 	if (add.j == 0)

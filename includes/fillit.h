@@ -87,6 +87,7 @@ bool			ft_errno_args(int *argc);
 bool			ft_read_file(string file_name, t_file **file);
 bool			ft_valid_file(t_file *file);
 bool			ft_solve(t_figurelist *fl);
+bool			ft_addcheck_dots(t_file *file);
 
 void			ft_addch(t_add add);
 void			ft_addcheck_first(int i, int j,
