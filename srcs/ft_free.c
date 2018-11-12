@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/12 11:23:14 by tmaluh            #+#    #+#             */
+/*   Updated: 2018/11/12 11:23:15 by tmaluh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fillit.h"
 
-void		ft_free_map(t_map **map)
+void	ft_free_map(t_map **map)
 {
 	int				i;
 
@@ -9,7 +21,6 @@ void		ft_free_map(t_map **map)
 		free((*map)->tab[i]);
 	free((*map)->tab);
 }
-
 
 void	ft_free_list(t_figurelist **fl)
 {

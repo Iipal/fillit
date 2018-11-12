@@ -37,7 +37,7 @@ static bool	ft_check_lines(int lines)
 	return (false);
 }
 
-bool	ft_read_file(string file_name, t_file **file)
+bool		ft_read_file(string file_name, t_file **file)
 {
 	string		temp;
 	int			fd;
@@ -61,7 +61,7 @@ bool	ft_read_file(string file_name, t_file **file)
 	return (true);
 }
 
-bool	ft_valid_each_figure(t_file *file, int i)
+bool		ft_valid_each_figure(t_file *file, int i)
 {
 	int		i_1;
 	int		hashes;
@@ -90,7 +90,7 @@ bool	ft_valid_each_figure(t_file *file, int i)
 	return (false);
 }
 
-bool	ft_valid_file(t_file *file)
+bool		ft_valid_file(t_file *file)
 {
 	int		i;
 
