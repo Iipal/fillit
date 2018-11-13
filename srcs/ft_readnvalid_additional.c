@@ -22,8 +22,7 @@ bool	ft_addcheck_dots(t_file *file)
 	{
 		j = -1;
 		while (file->tab[i][++j] != '\0')
-			if (file->tab[i][j] != '.' && file->tab[i][j] != '#')
-				return (false);
+			_ERR_NOTIS(!(file->tab[i][j] != '.' && file->tab[i][j] != '#'));
 	}
 	return (true);
 
