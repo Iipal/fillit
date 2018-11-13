@@ -13,7 +13,7 @@
 NAME = fillit
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Wno-unused-but-set-variable
+CFLAGS = -Wall -Wextra -Werror
 
 SRC = srcs/main.c\
 		srcs/ft_cut_figure.c \
