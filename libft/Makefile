@@ -17,6 +17,15 @@ LC = ar rcs
 
 CFLAGS = -Wall -Wextra -Werror -std=c99
 
+WHITE=\033[0m
+GREEN=\033[32m
+LGREEN=\033[92m
+RED=\033[31m
+ORANGE=\033[33m
+YELLOW=\033[93m
+PURPLE=\033[34m
+L=\033[36m
+
 DEL = rm -rf
 
 LIBSRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
@@ -40,16 +49,21 @@ LIBOBJ = $(LIBSRC:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(LIBOBJ)
+	@echo "$LFILLIT:$(GREEN)\tCompiling LIBFT...$(WHITE)"
 	@$(LC) $(NAME) $(LIBOBJ)
+	@echo "$LLIBFT:$(LGREEN)\tCompiled & libft.a ready for use.$(WHITE)"
 
-$(LIBOBJ):
-	@$(CC) $(CFLAGS) -c $(LIBSRC)
+$(LIBOBJ): %.o: %.c
+	@echo "$LLIBFT:$(GREEN)\tCompiling file:$(YELLOW)" $< "$(WHITE)to$(PURPLE)" $@ "$(WHITE)"
+	@$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
 	@$(DEL) $(LIBOBJ)
+	@echo "$LLIBFT:$(ORANGE)\tRemoved: *.o files.$(WHITE)"
 
 fclean: clean
 	@$(DEL) $(NAME)
+	@echo "$LLIBFT:$(RED)\tRemoved: libft.a.$(WHITE)"
 
 re: fclean all
 
